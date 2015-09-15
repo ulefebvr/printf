@@ -13,7 +13,7 @@
 SRC_PATH	=	./srcs/
 SRC_NAME	=	ft_print_number.c ft_printf.c get_conv_info.c \
 				print_int.c print_tools.c print_str.c print_utf.c \
-				print_char.c print_double.c print_time.c 
+				print_char.c print_double.c print_time.c ft_fdprintf.c
 OBJ_PATH	=	./obj/
 INC_PATH	=	./includes/
 NAME		=	./libftprintf.a

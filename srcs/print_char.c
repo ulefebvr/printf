@@ -23,10 +23,10 @@ int				ft_print_char(char c, t_conv conv)
 	conv.width--;
 	paddc = (conv.info & FLAG_Z) ? '0' : ' ';
 	while ((!(conv.info & FLAG_M)) && --conv.width >= 0)
-		ret += write(1, &paddc, 1);
-	ret += write(1, &c, 1);
+		ret += write(ft_out(NULL), &paddc, 1);
+	ret += write(ft_out(NULL), &c, 1);
 	while ((conv.info & FLAG_M) && --conv.width >= 0)
-		ret += write(1, " ", 1);
+		ret += write(ft_out(NULL), " ", 1);
 	return (ret);
 }
 
@@ -43,10 +43,10 @@ static int		ft_print_wchar(wchar_t c, t_conv conv)
 		conv.width--;
 	paddc = (conv.info & FLAG_Z) ? '0' : ' ';
 	while ((!(conv.info & FLAG_M)) && --conv.width >= 0)
-		ret += write(1, &paddc, 1);
-	ret += write(1, buf, len);
+		ret += write(ft_out(NULL), &paddc, 1);
+	ret += write(ft_out(NULL), buf, len);
 	while ((conv.info & FLAG_M) && --conv.width >= 0)
-		ret += write(1, " ", 1);
+		ret += write(ft_out(NULL), " ", 1);
 	return (ret);
 }
 

@@ -14,7 +14,7 @@
 
 #include <unistd.h>
 
-static t_conv		init_var(int nprinted)
+t_conv				init_var(int nprinted)
 {
 	t_conv conv;
 
@@ -27,7 +27,7 @@ static t_conv		init_var(int nprinted)
 	return (conv);
 }
 
-static t_conv		ft_modify(t_conv conv)
+t_conv				ft_modify(t_conv conv)
 {
 	if (conv.type == 'D' || conv.type == 'U' || conv.type == 'O' ||
 		conv.type == 'S' || conv.type == 'C' || conv.type == 'F' ||
@@ -47,7 +47,7 @@ static t_conv		ft_modify(t_conv conv)
 	return (conv);
 }
 
-static int			print_conversion(t_conv conv, va_list list)
+int					print_conversion(t_conv conv, va_list list)
 {
 	int		nprinted;
 
@@ -73,7 +73,7 @@ static int			print_conversion(t_conv conv, va_list list)
 	return (nprinted);
 }
 
-static int			run_printf(const char *fmt, va_list list)
+int					run_printf(const char *fmt, va_list list)
 {
 	t_conv conv;
 
@@ -89,7 +89,7 @@ static int			run_printf(const char *fmt, va_list list)
 			fmt++;
 		}
 		else
-			conv.ret += write(1, fmt++, 1);
+			conv.ret += write(ft_out(NULL), fmt++, 1);
 	}
 	return (conv.ret);
 }
@@ -102,6 +102,7 @@ int					ft_printf(const char *fmt, ...)
 	nprinted = 0;
 	if (fmt)
 	{
+		ft_out("1");
 		va_start(list, fmt);
 		nprinted = run_printf(fmt, list);
 		va_end(list);

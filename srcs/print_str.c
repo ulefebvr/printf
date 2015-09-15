@@ -37,10 +37,10 @@ static int		ft_print_str(t_conv conv, char *str)
 	conv.width -= len;
 	paddc = (conv.info & FLAG_Z) ? '0' : ' ';
 	while ((!(conv.info & FLAG_M)) && --conv.width >= 0)
-		ret += write(1, &paddc, 1);
-	ret += write(1, str, len);
+		ret += write(ft_out(NULL), &paddc, 1);
+	ret += write(ft_out(NULL), str, len);
 	while ((conv.info & FLAG_M) && --conv.width >= 0)
-		ret += write(1, " ", 1);
+		ret += write(ft_out(NULL), " ", 1);
 	return (ret);
 }
 
@@ -54,15 +54,15 @@ static int		ft_print_wstr(t_conv conv, wchar_t *str)
 	len = ft_wnstrlen(str, (conv.info & IS_PRE) ? conv.prec : -1);
 	conv.width -= len;
 	while ((!(conv.info & FLAG_M)) && --conv.width >= 0)
-		ret += write(1, (conv.info & FLAG_Z) ? "0" : " ", 1);
+		ret += write(ft_out(NULL), (conv.info & FLAG_Z) ? "0" : " ", 1);
 	while (*str && (len -= ft_wctoc(*str, buf)) >= 0)
 	{
 		ft_wctoc(*str, buf);
-		ret += write(1, buf, ft_strlen(buf));
+		ret += write(ft_out(NULL), buf, ft_strlen(buf));
 		str++;
 	}
 	while ((conv.info & FLAG_M) && --conv.width >= 0)
-		ret += write(1, " ", 1);
+		ret += write(ft_out(NULL), " ", 1);
 	return (ret);
 }
 
@@ -75,10 +75,10 @@ int				print_str(t_conv conv, va_list list)
 	if (!(str = get_arg(conv.info, list)))
 	{
 		if (!conv.width)
-			ret = write(1, "(null)", 6);
+			ret = write(ft_out(NULL), "(null)", 6);
 		else
 			while (--conv.width >= 0)
-				ret += write(1, (conv.info & FLAG_Z) ? "0" : " ", 1);
+				ret += write(ft_out(NULL), (conv.info & FLAG_Z) ? "0" : " ", 1);
 	}
 	if (str && conv.info & LGTH_L)
 		ret = ft_print_wstr(conv, (wchar_t *)str);

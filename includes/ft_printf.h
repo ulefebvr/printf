@@ -87,5 +87,12 @@ const char						*get_conv_info
 								(const char *fmt, t_conv *conv, va_list list);
 
 int								ft_printf(const char *fmt, ...);
+int								ft_fdprintf(int fd, const char *fmt, ...);
+
+int								ft_out(char *output);
+t_conv							init_var(int nprinted);
+t_conv							ft_modify(t_conv conv);
+int								print_conversion(t_conv conv, va_list list);
+int								run_printf(const char *fmt, va_list list);
 
 #endif
