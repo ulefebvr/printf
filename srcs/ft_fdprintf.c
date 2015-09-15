@@ -16,7 +16,7 @@ int					ft_out(char *output)
 {
 	static int		ret;
 
-	if (ft_strlen(output))
+	if (output)
 		ret = output[0] - '0';
 	return (ret);
 }
